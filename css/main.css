@@ -230,6 +230,7 @@ ul.nostyle i {
   background-size: cover;
 }
 #main-slider .slider-inner {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
