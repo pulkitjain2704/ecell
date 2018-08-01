@@ -193,19 +193,46 @@ jQuery(function($) {'use strict';
 	});
 
 	// Contact form
-	var form = $('#main-contact-form');
-	form.submit(function(event){
-		event.preventDefault();
-		var form_status = $('<div class="form_status"></div>');
-		$.ajax({
-			url: $(this).attr('action'),
-			beforeSend: function(){
-				form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn() );
+	$("#submitform").click(function(e){
+		$('#errormsg').html('')
+		var email = $('#emailForm').val();
+		var name = $('#nameForm').val();
+		var subject = $('#subjectForm').val();
+		var msg = $('#msgForm').val();
+		if(email && name && subject && msg){
+			var data = JSON.stringify({
+			  "name": name,
+			  "email": email,
+			  "subject": subject,
+			  "message": msg
+			});
+			console.log(data)
+			var settings = {
+			  "async": true,
+			  "crossDomain": true,
+			  "url": "https://ecell-pulkit.herokuapp.com/api/mail",
+			  "method": "POST",
+			  "headers": {
+			    "Content-Type": "application/json"
+			  },
+			  "processData": false,
+			  "data": data
 			}
-		}).done(function(data){
-			form_status.html('<p class="text-success">Thank you for contact us. As early as possible  we will contact you</p>').delay(3000).fadeOut();
-		});
-	});
+
+			$.ajax(settings).done(function (response) {
+			  console.log(response);
+			  $('#errormsg').html('Message sent')
+			})
+
+
+		}else{
+			console.log('no data')
+			$('#errormsg').html('All fields are required !!!')
+		}
+		
+
+		e.preventDefault(); 
+	})
 
 	//Pretty Photo
 	$("a[rel^='prettyPhoto']").prettyPhoto({
