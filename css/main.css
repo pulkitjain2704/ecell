@@ -890,10 +890,12 @@ clip-path: polygon(0 0, 100% 12%, 100% 100%, 0 88%);
 #blog .blog-post .entry-meta > span > a:hover {
   color: #45aed6;
 }
+
 #contact {
   position: relative;
   overflow: hidden;
 }
+
 #contact .container-wrapper {
   position: absolute;
   top: 0;
