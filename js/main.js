@@ -97,7 +97,7 @@ jQuery(function($) {'use strict';
 	      percentTime = 0;
 	      isPause = false;
 	      //run interval every 0.01 second
-	      tick = setInterval(interval, 3);
+	      tick = setInterval(interval, 2);
 	    };
 	 
 	    function interval() {
